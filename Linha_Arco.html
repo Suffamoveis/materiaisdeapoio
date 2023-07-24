@@ -14,8 +14,15 @@
     // Carrega e exibe o PDF
     pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
       pdfDoc = pdfDoc_;
-      renderPage(1);
+      renderAllPages();
     });
+
+    // Renderiza todas as páginas do PDF no canvas
+    function renderAllPages() {
+      for (var pageNumber = 1; pageNumber <= pdfDoc.numPages; pageNumber++) {
+        renderPage(pageNumber);
+      }
+    }
 
     // Renderiza a página do PDF no canvas
     function renderPage(pageNumber) {
@@ -23,7 +30,7 @@
         var scale = 1;
         var viewport = page.getViewport({ scale: scale });
 
-        var canvas = document.getElementById('pdfViewer');
+        var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
@@ -33,6 +40,9 @@
           viewport: viewport
         };
         page.render(renderContext);
+
+        var pdfViewer = document.getElementById('pdfViewer');
+        pdfViewer.appendChild(canvas);
       });
     }
   </script>
