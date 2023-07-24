@@ -38,7 +38,7 @@
         div.style.height = viewport.height + 'px';
 
         var canvas = document.createElement('canvas');
-        var context = canvas.getContext('3d');
+        var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
         div.appendChild(canvas);
@@ -58,6 +58,7 @@
     .pdfPage {
       page-break-after: always;
       margin: 10px;
+      background-color: #f0f0f0; 
     }
   </style>
 </body>
