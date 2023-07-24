@@ -14,28 +14,45 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
 <body>
-  <div style="width: 100%; height: 500px;">
-    <canvas id="pdfViewer"></canvas>
+  <div style="width: 100%; height: 1080%; overflow: auto;">
+    <div id="pdfViewer"></div>
   </div>
   <script>
     var url = 'https://suffamoveis.github.io/materiaisdeapoio/Mesa_Yankee.pdf'; // Substitua pelo caminho correto do seu arquivo PDF
 
     // Carrega e exibe o PDF
     pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-      pdfDoc = pdfDoc_;
-      renderPage(1);
+      var pdfDoc = pdfDoc_;
+      renderAllPages(pdfDoc);
     });
 
-    // Renderiza a página do PDF no canvas
-    function renderPage(pageNumber) {
+    // Renderiza todas as páginas do PDF no div #pdfViewer
+    function renderAllPages(pdfDoc) {
+      var container = document.getElementById('pdfViewer');
+
+      for (var pageNumber = 1; pageNumber <= pdfDoc.numPages; pageNumber++) {
+        renderPage(pdfDoc, container, pageNumber);
+      }
+    }
+
+    // Renderiza a página do PDF no div #pdfViewer
+    function renderPage(pdfDoc, container, pageNumber) {
       pdfDoc.getPage(pageNumber).then(function(page) {
         var scale = 1.5;
         var viewport = page.getViewport({ scale: scale });
 
-        var canvas = document.getElementById('pdfViewer');
+        var div = document.createElement('div');
+        div.className = 'pdfPage';
+        div.style.width = viewport.width + 'px';
+        div.style.height = viewport.height + 'px';
+
+        var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
+        div.appendChild(canvas);
+
+        container.appendChild(div);
 
         var renderContext = {
           canvasContext: context,
@@ -45,5 +62,12 @@
       });
     }
   </script>
+
+  <style>
+    .pdfPage {
+      page-break-after: always;
+      margin: 10px;
+    }
+  </style>
 </body>
 </html>
