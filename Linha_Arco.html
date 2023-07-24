@@ -20,7 +20,7 @@
     // Renderiza a página do PDF no canvas
     function renderPage(pageNumber) {
       pdfDoc.getPage(pageNumber).then(function(page) {
-        var scale = 1.5;
+        var scale = 1;
         var viewport = page.getViewport({ scale: scale });
 
         var canvas = document.getElementById('pdfViewer');
