@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9QFLLS8KMS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9QFLLS8KMS');
+</script>
+  <title>Buffet Assimetric</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+  <div style="width: 100%; height: 500px;">
+    <canvas id="pdfViewer"></canvas>
+  </div>
+  <script>
+    var url = 'https://suffamoveis.github.io/materiaisdeapoio/Dunnas_STUDIO_09.pdf'; // Substitua pelo caminho correto do seu arquivo PDF
+
+    // Carrega e exibe o PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+      pdfDoc = pdfDoc_;
+      renderPage(1);
+    });
+
+    // Renderiza a página do PDF no canvas
+    function renderPage(pageNumber) {
+      pdfDoc.getPage(pageNumber).then(function(page) {
+        var scale = 1.5;
+        var viewport = page.getViewport({ scale: scale });
+
+        var canvas = document.getElementById('pdfViewer');
+        var context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        var renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9QFLLS8KMS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9QFLLS8KMS');
+</script>
+  <title>Buffet Assimetric</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+  <div style="width: 100%; height: 500px;">
+    <canvas id="pdfViewer"></canvas>
+  </div>
+  <script>
+    var url = 'https://suffamoveis.github.io/materiaisdeapoio/Dunnas_STUDIO_09.pdf'; // Substitua pelo caminho correto do seu arquivo PDF
+
+    // Carrega e exibe o PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+      pdfDoc = pdfDoc_;
+      renderPage(1);
+    });
+
+    // Renderiza a página do PDF no canvas
+    function renderPage(pageNumber) {
+      pdfDoc.getPage(pageNumber).then(function(page) {
+        var scale = 1.5;
+        var viewport = page.getViewport({ scale: scale });
+
+        var canvas = document.getElementById('pdfViewer');
+        var context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        var renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+    }
+  </script>
+</body>
+</html>
